@@ -1,3 +1,6 @@
+PImage bgImg;
+PImage groundhog;
+PImage life;
 PImage robot;
 PImage soil;
 PImage soldier;
@@ -6,7 +9,7 @@ int x; //soldier
 int laserX; //Laser
 int laserX2;
 
-int laser_length = 25;
+int laser_length = 40;
 
 void setup() {
   size(640, 480);
