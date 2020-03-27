@@ -42,7 +42,7 @@ image (bgImg, 0, 0);
 stroke(255,255,0);
 strokeWeight(5);
 fill(253, 184, 19);
-circle(590, 50, 120); //sun
+ellipse(590, 50, 120); //sun
 
 //grass
 noStroke();
