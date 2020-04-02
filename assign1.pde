@@ -5,9 +5,9 @@ PImage robot;
 PImage soil;
 PImage soldier;
 
-int x; //soldier
-int laserX; //Laser
-int laserX2;
+int x; //soldier position 
+int laserX; //Laser edge point X (right)
+int laserX2; //Laser edge point X (left)
 
 int laserLength = 40;
 
@@ -37,7 +37,7 @@ int y_soldierCase= int(random(0,3.99));
 robotPosition_y =  160 + y_robotCase*80;
 soldierY = 160 + y_soldierCase*80;
 
-laserX = robotPosition_x + 25; // Laser point 1
+laserX = robotPosition_x + 25; // Laser point X (left)
 
 }
 
