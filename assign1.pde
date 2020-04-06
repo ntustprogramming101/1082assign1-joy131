@@ -5,16 +5,17 @@ PImage robot;
 PImage soil;
 PImage soldier;
 
-int x; //soldier position 
-int laserX; //Laser edge point X (right)
-int laserX2; //Laser edge point X (left)
+
+int laserX; //Laser edge point 1 (right)
+int laserX2; //Laer edge point 2 (left)
 
 int laserLength = 40;
 
-int robotPosition_x;
-int robotPosition_y;
+int robotPositionX;
+int robotPositionY;
 
-int soldierY;
+int soldierX; //soldier position X
+int soldierY; // soldier position Y
 
 void setup() {
   size(640, 480);
@@ -27,17 +28,17 @@ soil = loadImage("img/soil.png");
 robot = loadImage("img/robot.png");
 soldier = loadImage("img/soldier.png");
 
-x = 0; //soldier
+soldierX = 0; //soldier
 
 
 
-robotPosition_x = int(random(100,500));
-int y_robotCase = int(random(0,3.99));
-int y_soldierCase= int(random(0,3.99));
-robotPosition_y =  160 + y_robotCase*80;
-soldierY = 160 + y_soldierCase*80;
+robotPositionX = int(random(100,500));// robot ramdom in x (there are 5 boxes)
+int y_robotCase = int(random(0,3.99)); // between 0,1,2,3 (soil)
+int y_soldierCase= int(random(0,3.99)); //between 0,1,2,3 (soil)
+robotPositionY =  160 + y_robotCase*80; //160 is sky + random * 1 box(80) 
+soldierY = 160 + y_soldierCase*80; //160 is sky + random * 1 box(80) 
 
-laserX = robotPosition_x + 25; // Laser point X (left)
+laserX = robotPositionX + 25; // Laser point 1 (right) robot hand
 
 }
 
@@ -47,11 +48,10 @@ void draw() {
 image (bgImg, 0, 0); 
 
 //sun
-
 stroke(255,255,0);
 strokeWeight(5);
 fill(253, 184, 19);
-ellipse(590, 50, 120,120); //sun
+ellipse(590, 50, 120, 120); 
 
 //grass
 noStroke();
@@ -70,29 +70,32 @@ image (life , 150, 10);
 image (soil , 0 , 160); 
 
 //robot
-image ( robot , robotPosition_x , robotPosition_y); 
+image ( robot , robotPositionX , robotPositionY); 
 
 
-//laser
+//laser 
 stroke(255,0,0);
 strokeWeight(10);
-
+//laser shooting
 laserX=laserX-1;
-if(laserX<robotPosition_x-100){
-laserX = robotPosition_x+25;
+if(laserX<robotPositionX-100){
+laserX = robotPositionX+25;
 }
 laserX2 = (laserX + laserLength);
-if(laserX2 > robotPosition_x+25)
+if(laserX2 > robotPositionX+25)
 {
-  laserX2 = robotPosition_x+25;
+  laserX2 = robotPositionX+25;
 }
-line(laserX,robotPosition_y+37,laserX2,robotPosition_y+37); 
+line(laserX,robotPositionY+37,laserX2,robotPositionY+37); 
 
 
 //moving soldier
-x+=5;
-image(soldier,x ,soldierY);
-x%=720; 
+soldierX+=5;
+image(soldier, soldierX ,soldierY);
+//x%=720; 
 
 
+if(soldierX>width){
+  soldierX = -100;
+   }
 }
